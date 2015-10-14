@@ -15,8 +15,13 @@ https://github.com/cbron/python-saml-flask
 http://calebbron.com/tech/saml-in-flask.html
 otro tuto -> http://www.scriptscoop.net/t/5d94bd18ded7/saml2-service-provider-in-python.html
 http://developer.okta.com/docs/guides/setting_up_a_saml_application_in_okta.html
+http://developer.okta.com/docs/guides/pysaml2.html
 https://laureatetest-admin.okta.com/app/personaldeveloper_examplesamlaplication_1/0oa26caftt4skBYv50x7/setup/help/SAML_2_0/instructions
 handerson.contreras@laureate.net
+
+https://github.com/rajendrakrp/Flask-Gae-Init
+https://github.com/jonparrott/flask-ferris-example
+
 pip install flask flask-login pysaml2
 
 
@@ -25,3 +30,4 @@ suffix:test
 
 pip install flask flask-login pysaml2 -t lib
 pip install pyOpenSSL==0.13
+http://104.197.13.216/

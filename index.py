@@ -110,7 +110,7 @@ def idp_initiated(idp_name):
         user_store[username] = {
             'first_name': authn_response.ava['FirstName'][0],
             'last_name': authn_response.ava['LastName'][0],
-            }
+        }
     user = User(username)
     login_user(user)
     # TODO: If it exists, redirect to request.form['RelayState']
