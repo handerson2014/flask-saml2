@@ -26,7 +26,7 @@ from saml2.config import Config as Saml2Config
 idp_settings = {
     u'example.okta.com': {
         u"metadata": {
-            "local": [u'./example.okta.com.metadata']
+            "local": [u'/var/www/flask-saml2/example.okta.com.metadata']
         }
     },
 }
@@ -68,6 +68,7 @@ def main_page():
 def idp_initiated(idp_name):
     logging.warning("ddddddddddddddddddd")
     logging.warning(idp_name)
+    
     settings = idp_settings[idp_name]
     settings['service'] = {
         'sp': {
@@ -86,7 +87,7 @@ def idp_initiated(idp_name):
             'want_response_signed': False,
         },
     }
-
+    logging.warning(settings)
     spConfig = Saml2Config()
     spConfig.load(settings)
     spConfig.allow_unknown_attributes = True
