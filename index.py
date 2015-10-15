@@ -5,7 +5,7 @@ import os
 import urllib
 import uuid
 import zlib
-
+import socket
 from flask import Flask
 from flask import redirect
 from flask import request
@@ -23,13 +23,27 @@ from saml2.config import Config as Saml2Config
 
 # PER APPLICATION configuration settings.
 # Each SAML service that you support will have different values here.
-idp_settings = {
-    u'example.okta.com': {
-        u"metadata": {
-            "local": [u'./example.okta.com.metadata']
-        }
-    },
-}
+current_domain = socket.gethostname()
+logging.warning("current domain")
+logging.warning(current_domain)
+
+idp_settings = {}
+if 'localhost' in current_domain or 'ubuntu' in current_domain:
+    idp_settings = {
+        u'example.okta.com': {
+            u"metadata": {
+                "local": [u'./example.okta.com.metadata']
+            }
+        },
+    }
+else:
+    idp_settings = {
+        u'example.okta.com': {
+            u"metadata": {
+                "local": [u'/var/www/flask-saml2/example.okta.com.metadata']
+            }
+        },
+    }
 app = Flask(__name__)
 app.secret_key = str(uuid.uuid4())  # Replace with your secret key
 login_manager = LoginManager()
@@ -66,7 +80,7 @@ def main_page():
 
 @app.route("/saml/sso/<idp_name>", methods=['POST'])
 def idp_initiated(idp_name):
-    logging.warning("ddddddddddddddddddd")
+    logging.warning("idp_name")
     logging.warning(idp_name)
     settings = idp_settings[idp_name]
     settings['service'] = {
